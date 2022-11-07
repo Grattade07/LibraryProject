@@ -38,3 +38,20 @@ function bookInfo() { //Loops through array then places into p element
         bookList.appendChild(book);    
 }
 };
+
+//Brings Form up when button is clicked
+let form = document.getElementById("formWindow");
+
+let btn = document.getElementById("newBook");
+
+let span = document.getElementsByClassName("close")[0];
+
+//Displays form
+btn.onclick = function() {
+    form.style.display = "block"
+}
+
+//Closes form window
+span.onclick = function() {
+    form.style.display = "none"
+}
