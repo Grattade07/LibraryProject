@@ -1,0 +1,16 @@
+#book {
+    display: flex;
+
+    gap: 5px;
+}
+
+.book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 50px;
+    width: 50px;
+
+    background-color: rgb(52, 151, 158);
+}
