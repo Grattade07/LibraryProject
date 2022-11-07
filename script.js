@@ -31,6 +31,7 @@ function bookInfo() { //Loops through array then places into p element
     const bookList = document.querySelector("#book");
     for (let i = 0; i < myLibrary.length; i++) {
     const book = document.createElement("div");
+        book.className = "book"
         book.textContent = myLibrary[i];
         console.log(book.textContent);
 
