@@ -55,3 +55,9 @@ btn.onclick = function() {
 span.onclick = function() {
     form.style.display = "none"
 }
+
+window.onclick = function(event) {
+    if (event.target == form) {
+        form.style.display = "none"
+    }
+}
