@@ -14,7 +14,7 @@
   
   console.log(theHobbit.info()) */
 
-let myLibrary = [];
+let myLibrary = ["Hobbit", "Harry Potter"];
 
 // Constructor
 function Book() {
@@ -22,7 +22,18 @@ function Book() {
 }
 // function
 function addBookToLibrary() {
-const bookDetail = prompt("What is your name?") //Gets info from user
-
+const bookDetail = prompt("What book do you want to add?") //Gets info from user
+console.log(typeof(bookDetail))
 myLibrary.push(bookDetail) //pushes info into array
 }
+
+function bookInfo() { //Loops through array then places into p element
+    const bookList = document.querySelector("#book");
+    for (let i = 0; i < myLibrary.length; i++) {
+    const book = document.createElement("div");
+        book.textContent = myLibrary[i];
+        console.log(book.textContent);
+
+        bookList.appendChild(book);    
+}
+};
