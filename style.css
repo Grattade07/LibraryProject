@@ -8,9 +8,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 100px;
 
     background-color: rgb(52, 151, 158);
 }

@@ -28,37 +28,41 @@ function addBookToLibrary() {
 const bookTitle = document.getElementById("title").value //Gets title
 const bookAuthor = document.getElementById("author").value  // Gets author
 const bookPages = document.getElementById("pages").value  //Gets pages
-const bookRead = toString(document.getElementById("read").checked) //Is book read
+const bookRead = document.getElementById("read").checked.toString() //Is book read
 
-console.log(bookRead)
-
-const book = new Book(bookTitle, bookAuthor, bookPages, bookRead)
-myLibrary.push(book) //pushes info into array
+const newBook = new Book(bookTitle, bookAuthor, bookPages, bookRead)
+myLibrary.push(newBook) //pushes info into array
 }
 
 const bookList = document.querySelector("#book");
 
 function bookInfo() { //Loops through array then places into p element 
-    for (let i = 0; i < myLibrary.length; i++) {
+    myLibrary.forEach((Book, i) => {
+    
     const book = document.createElement("div");
-    const bookTitle = document.createElement("div")
-    const bookAuthor = document.createElement("div")
-    const bookPages = document.createElement("div")
-    const bookRead = document.createElement("div")
+    const title = document.createElement("div")
+    const author = document.createElement("div")
+    const pages = document.createElement("div")
+    const read = document.createElement("div")
 
-    bookTitle.textContent = Book.title
-    bookAuthor.textContent  = Book.author
-    bookPages.textContent  = Book.pages
-    bookRead.textContent  = Book.read
+    title.textContent = Book.title
+    author.textContent  = Book.author
+    pages.textContent  = Book.pages
+    read.textContent  = Book.read
 
-    book.appendChild(bookTitle)
-    book.appendChild(bookAuthor)
-    book.appendChild(bookPages)
-    book.appendChild(bookRead)
+    book.classList.add("book");
 
-    bookList.appendChild(book);    
-}
+    book.appendChild(title)
+    book.appendChild(author)
+    book.appendChild(pages)
+    book.appendChild(read)
+
+    bookList.appendChild(book);
+    
+})
 };
+
+bookInfo()
 
 //Brings Form up when button is clicked
 let form = document.getElementById("formWindow");
@@ -95,7 +99,6 @@ subBtn.addEventListener("click", function(event) {
 
 subBtn.addEventListener("click", () => {
     addBookToLibrary();
-    console.log(myLibrary);
     bookList.innerHTML = "";
     bookInfo();
 }) 
