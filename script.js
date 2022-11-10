@@ -62,8 +62,6 @@ function bookInfo() { //Loops through array then places into p element
 })
 };
 
-bookInfo()
-
 //Brings Form up when button is clicked
 let form = document.getElementById("formWindow");
 
