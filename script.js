@@ -14,6 +14,15 @@
   
   console.log(theHobbit.info()) */
 
+//Variables
+const book = document.createElement("div");
+const title = document.createElement("div")
+const author = document.createElement("div")
+const pages = document.createElement("div")
+const read = document.createElement("div")
+const remove = document.createElement("button")
+
+
 let myLibrary = [ {author:'you', title: 'me', pages :'2', read: 'false'}];
 
 // Constructor
@@ -39,18 +48,13 @@ const bookList = document.querySelector("#book");
 function bookInfo() { //Loops through array then places into p element 
     myLibrary.forEach((Book) => {
     
-    const book = document.createElement("div");
-    const title = document.createElement("div")
-    const author = document.createElement("div")
-    const pages = document.createElement("div")
-    const read = document.createElement("div")
-    const remove = document.createElement("button")
-
     title.textContent = Book.title
     author.textContent  = Book.author
     pages.textContent  = Book.pages
     read.textContent  = Book.read
     remove.textContent = "Remove"
+
+    remove.id = "removeBtn"
 
     book.setAttribute("indexNumber", myLibrary.indexOf(Book))
 
@@ -63,7 +67,6 @@ function bookInfo() { //Loops through array then places into p element
     book.appendChild(remove)
 
     bookList.appendChild(book);
-    
 })
 };
 
@@ -108,6 +111,12 @@ subBtn.addEventListener("click", () => {
     bookInfo();
 }) 
 
-//For remove button
-const remove = document.createElement("button")
-    remove.textContent = "Remove"
+//To remove book from array
+let removeBtn = document.getElementById("removeBtn")
+
+removeBtn.addEventListener("click", () => {
+    bookList.innerHTML = "";
+    myLibrary.splice(0, 1)
+    console.log(myLibrary)
+    bookInfo();
+    })
