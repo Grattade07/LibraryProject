@@ -37,13 +37,15 @@ function bookInfo() { //Loops through array then places into p element
     const author = document.createElement("div")
     const pages = document.createElement("div")
     const read = document.createElement("div")
+    const readBtn = document.createElement("button")
     const remove = document.createElement("button")
     
-    title.textContent = Book.title
+    title.textContent = Book.title.toUpperCase()
     author.textContent  = Book.author
     pages.textContent  = Book.pages
     read.textContent  = ""
     remove.textContent = "Remove"
+    readBtn.textContent = "Change read"
 
     remove.classList.add("removeBtn")
 
@@ -62,12 +64,15 @@ function bookInfo() { //Loops through array then places into p element
 
     isRead()
 
+   
+
     book.classList.add("book");
 
     book.appendChild(title)
     book.appendChild(author)
     book.appendChild(pages)
     book.appendChild(read)
+    book.appendChild(readBtn)
     book.appendChild(remove)
 
     remove.addEventListener("click", () => { //removes book from Library array
@@ -77,6 +82,20 @@ function bookInfo() { //Loops through array then places into p element
                 bookList.innerHTML = ""
                 bookInfo()
             }
+        }
+    })
+
+    readBtn.addEventListener("click", () => {
+        if (read.textContent == "Read") {
+            bookList.innerHTML = ""
+            Book.read = "false"
+            isRead()
+            bookInfo()
+        } else if (read.textContent == "Not Read") {
+            bookList.innerHTML = ""
+            Book.read = "true"
+            isRead()
+            bookInfo()
         }
     })
 
