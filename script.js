@@ -7,7 +7,7 @@ const read = document.createElement("div")
 const remove = document.createElement("button")
 
 
-let myLibrary = [ {author:'you', title: 'me', pages :'2', read: 'false'}, {author:'you', title: 'me', pages :'2', read: 'false'}, {author:'you', title: 'me', pages :'2', read: 'false'}];
+let myLibrary = [ {author:'you', title: 'me', pages :'2', read: 'false'}, {author:'you', title: 'me', pages :'2', read: 'true'}, {author:'you', title: 'me', pages :'2', read: 'false'}];
 
 // Constructor
 function Book(author, title, pages, read) {
@@ -42,13 +42,25 @@ function bookInfo() { //Loops through array then places into p element
     title.textContent = Book.title
     author.textContent  = Book.author
     pages.textContent  = Book.pages
-    read.textContent  = Book.read
+    read.textContent  = ""
     remove.textContent = "Remove"
 
     remove.classList.add("removeBtn")
 
     book.setAttribute("indexNumber", myLibrary.indexOf(Book))
     let index = parseInt(book.getAttribute("indexNumber"))
+
+    function isRead() { //Checks if book is read
+        if (Book.read == "true") {
+            read.textContent = "Read"
+            read.classList.add("read")
+        } else {
+            read.textContent = "Not Read"
+            read.classList.add("notRead")
+        }
+    }
+
+    isRead()
 
     book.classList.add("book");
 
@@ -58,7 +70,7 @@ function bookInfo() { //Loops through array then places into p element
     book.appendChild(read)
     book.appendChild(remove)
 
-    remove.addEventListener("click", () => { //should remove book from Library array
+    remove.addEventListener("click", () => { //removes book from Library array
         for (i = 0; i < myLibrary.length; i++) {
             if (index === i) {
                 myLibrary.splice(i, 1)
