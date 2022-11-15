@@ -23,7 +23,7 @@ const read = document.createElement("div")
 const remove = document.createElement("button")
 
 
-let myLibrary = [ {author:'you', title: 'me', pages :'2', read: 'false'}];
+let myLibrary = [ {author:'you', title: 'me', pages :'2', read: 'false'}, {author:'you', title: 'me', pages :'2', read: 'false'}, {author:'you', title: 'me', pages :'2', read: 'false'}];
 
 // Constructor
 function Book(author, title, pages, read) {
@@ -47,6 +47,13 @@ const bookList = document.querySelector("#book");
 
 function bookInfo() { //Loops through array then places into p element 
     myLibrary.forEach((Book) => {
+
+    const book = document.createElement("div");
+    const title = document.createElement("div")
+    const author = document.createElement("div")
+    const pages = document.createElement("div")
+    const read = document.createElement("div")
+    const remove = document.createElement("button")
     
     title.textContent = Book.title
     author.textContent  = Book.author
@@ -54,9 +61,10 @@ function bookInfo() { //Loops through array then places into p element
     read.textContent  = Book.read
     remove.textContent = "Remove"
 
-    remove.id = "removeBtn"
+    remove.classList.add("removeBtn")
 
     book.setAttribute("indexNumber", myLibrary.indexOf(Book))
+    let index = parseInt(book.getAttribute("indexNumber"))
 
     book.classList.add("book");
 
@@ -66,11 +74,21 @@ function bookInfo() { //Loops through array then places into p element
     book.appendChild(read)
     book.appendChild(remove)
 
+    remove.addEventListener("click", () => { //should remove book from Library array
+        for (i = 0; i < myLibrary.length; i++) {
+            if (index === i) {
+                myLibrary.splice(i, 1)
+                bookList.innerHTML = ""
+                bookInfo()
+            }
+        }
+    })
+
     bookList.appendChild(book);
 })
 };
 
-bookInfo();
+bookInfo()
 
 //Brings Form up when button is clicked
 let form = document.getElementById("formWindow");
@@ -112,11 +130,3 @@ subBtn.addEventListener("click", () => {
 }) 
 
 //To remove book from array
-let removeBtn = document.getElementById("removeBtn")
-
-removeBtn.addEventListener("click", () => {
-    bookList.innerHTML = "";
-    myLibrary.splice(0, 1)
-    console.log(myLibrary)
-    bookInfo();
-    })
